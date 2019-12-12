@@ -18,4 +18,15 @@ def index(request):
     return render(request, 'index.html')
 
 def listar(request):
+    listar_frase = Aluno.objects.filter(ativo=True).all()
+    args = {
+        'listar_frase': listar_frase
+    }
+    return render(request, 'lista.html', args)
+def deletar(request):
+    item = aluno.objects.get(id=id)
+    if item is not None:
+        item.ativo = False
+        item.save()
+        return redirect('aluno/listar')
     return render(request, 'lista.html')
